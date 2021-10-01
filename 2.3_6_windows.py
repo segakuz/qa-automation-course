@@ -25,7 +25,7 @@ try:
     answer.send_keys(y)
 
     button2 = browser.find_element_by_css_selector('form button[type="submit"]')
-    button2.click()   
+    button2.click()
 
 finally:
     time.sleep(10)
