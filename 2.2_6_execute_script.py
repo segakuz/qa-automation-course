@@ -1,0 +1,34 @@
+from selenium import webdriver
+import time, math
+
+link = "http://suninjuly.github.io/execute_script.html"
+
+def calc(x):
+    return str(math.log(abs(12*math.sin(int(x)))))
+
+try:
+    browser = webdriver.Chrome()
+    browser.get(link)
+
+    x_element = browser.find_element_by_id("input_value")
+    x = x_element.text
+    y = calc(x)
+
+    browser.execute_script("window.scrollBy(0, 200)")
+
+
+    answerField = browser.find_element_by_id("answer")
+    answerField.send_keys(y)
+
+    checkbox = browser.find_element_by_css_selector("[for='robotCheckbox']")
+    checkbox.click()
+    
+    radio = browser.find_element_by_css_selector("[for='robotsRule']")
+    radio.click()
+
+    submit = browser.find_element_by_css_selector("[type='submit']")
+    submit.click()
+
+finally:
+    time.sleep(10)
+    browser.quit()
